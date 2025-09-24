@@ -1,7 +1,7 @@
 local ts_utils = require("nvim-treesitter.ts_utils")
 local ts_parsers = require("nvim-treesitter.parsers")
-local ts_queries = require("nvim-treesitter.query")
 local utils = require("nvim-gps.utils")
+local ts_queries = vim.treesitter.query
 
 local M = {}
 
@@ -320,7 +320,7 @@ function M.get_data()
 	data_prev_loc = vim.api.nvim_win_get_cursor(0)
 
 	local filelang = ts_parsers.ft_to_lang(vim.bo.filetype)
-	local gps_query = ts_queries.get_query(filelang, "nvimGPS")
+	local gps_query = ts_queries.get(filelang, "nvimGPS")
 	local transform = transform_lang[filelang]
 	local config = configs[filelang]
 
